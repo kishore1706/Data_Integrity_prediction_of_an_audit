@@ -56,8 +56,8 @@ if predict_button:
             st.write("If **Data Integrity Flag = 1**, There is a potential Data Integrity concern. The data may not be fully reliable.This does not always mean fraud or intentional wrongdoing. It simply means something happened that could affect confidence in the data.")
             st.write("If **Data Integrity Flag= 0**, No significant Data Integrity concern was identified.The observation may still be an issue, but it does not directly affect the trustworthiness of the data.")
             st.write("---")
-            st.markdown("### Processed text")
-            st.write(prediction['processed_text'])
+            #st.markdown("### Processed text")
+            #st.write(prediction['processed_text'])
         except Exception as err:
             st.error(f"Prediction failed: {err}")
 
