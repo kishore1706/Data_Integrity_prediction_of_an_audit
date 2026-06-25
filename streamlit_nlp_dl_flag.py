@@ -1,5 +1,5 @@
 import streamlit as st
-from nlp_dl_flag import DIFlagModel
+from nlp_dl_flag_production_code import DIFlagModel
 
 MODEL_FILE = "nlp_DI_flag_model.sav"
 VECTORIZER_FILE = "nlp_DI_flag_vectorizer.sav"
