@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 import re
@@ -7,7 +8,7 @@ from pathlib import Path
 
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.neighbors import KNeighborsClassifier
@@ -31,10 +32,10 @@ class DIFlagModel:
             nltk.data.find("corpora/wordnet")
         except LookupError:
             nltk.download("wordnet", quiet=True)
-
     # -----------------------------
     # Data Loading
     # -----------------------------
+
     def load_data(self):
         try:
             df = pd.read_csv(self.file_path, encoding='latin1')
@@ -158,7 +159,7 @@ class DIFlagModel:
 
             X_train_bow = self.vectorizer.fit_transform(X_train)
 
-            self.model = KNeighborsClassifier(n_neighbors=20)
+            self.model = LogisticRegression(class_weight='balanced',max_iter=1000,random_state=42)
 
             self.model.fit(X_train_bow, y_train)
 
@@ -181,14 +182,14 @@ class DIFlagModel:
             train_pred = self.model.predict(X_train_bow)
             test_pred = self.model.predict(X_test_bow)
 
-            #print("\nTraining Accuracy :",
-                  #accuracy_score(y_train, train_pred))
+            print("\nTraining Accuracy :",
+                  accuracy_score(y_train, train_pred))
 
-            #print("\nTesting Accuracy :",
-                  #accuracy_score(y_test, test_pred))
+            print("\nTesting Accuracy :",
+                  accuracy_score(y_test, test_pred))
 
-            #print("\nClassification Report")
-            #print(classification_report(y_test, test_pred))
+            print("\nClassification Report")
+            print(classification_report(y_test, test_pred))
 
         except Exception as e:
             print("Error during evaluation")

@@ -1,5 +1,9 @@
-pandas
-numpy
-nltk
-scikit-learn
 streamlit
+tensorflow
+numpy
+pandas
+scikit-learn
+opencv-python-headless
+Pillow
+matplotlib
+joblib
